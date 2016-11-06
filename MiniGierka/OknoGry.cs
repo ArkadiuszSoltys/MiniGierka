@@ -22,11 +22,24 @@ namespace MiniGierka
 
         private void nowaGraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (gra.Grafika.Pracuje)
+            {
+                DialogResult rezulat = MessageBox.Show("Od nowa?", "Odnowa?", MessageBoxButtons.YesNo);
+                if (rezulat != DialogResult.Yes)
+                    return;
+            }
+            
+            gra.OdNowa(panelGry.CreateGraphics(), new Rectangle(0, 0, panelGry.Width, panelGry.Height));
         }
 
         private void zakończToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (gra.Grafika.Pracuje)
+            {
+                DialogResult rezulat = MessageBox.Show("Koniec?", "Koniec?", MessageBoxButtons.YesNo);
+                if (rezulat != DialogResult.Yes)
+                    return;
+            }
             this.Close();
         }
 
@@ -43,12 +56,17 @@ namespace MiniGierka
         private void panelGry_Paint(object sender, PaintEventArgs e)
         {
             Graphics grafika = panelGry.CreateGraphics();
-            gra.WczytajGrafike(grafika, new Rectangle(0, 0, panelGry.Width, panelGry.Height));
+            gra.Wczytaj(grafika, new Rectangle(0, 0, panelGry.Width, panelGry.Height));
         }
 
         private void OknoGry_FormClosing(object sender, FormClosingEventArgs e)
         {
             gra.Zatrzymaj();
+        }
+
+        private void panelGry_Click(object sender, EventArgs e)
+        {
+            gra.Kliknij(MousePosition.X, MousePosition.Y);
         }
     }
 }

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ElementGry.cs" />
     <Compile Include="OknoAutorzy.cs">
       <SubType>Form</SubType>
     </Compile>

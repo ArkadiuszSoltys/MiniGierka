@@ -71,7 +71,7 @@
             this.nowaGraToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.nowaGraToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.nowaGraToolStripMenuItem.Name = "nowaGraToolStripMenuItem";
-            this.nowaGraToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nowaGraToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.nowaGraToolStripMenuItem.Text = "&Nowa gra";
             this.nowaGraToolStripMenuItem.Click += new System.EventHandler(this.nowaGraToolStripMenuItem_Click);
             // 
@@ -81,7 +81,7 @@
             this.zakończToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.zakończToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.zakończToolStripMenuItem.Name = "zakończToolStripMenuItem";
-            this.zakończToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.zakończToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.zakończToolStripMenuItem.Text = "&Zakończ";
             this.zakończToolStripMenuItem.Click += new System.EventHandler(this.zakończToolStripMenuItem_Click);
             // 
@@ -95,7 +95,7 @@
             // 
             // panelGry
             // 
-            this.panelGry.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panelGry.BackColor = System.Drawing.Color.Transparent;
             this.panelGry.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panelGry.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panelGry.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -104,6 +104,7 @@
             this.panelGry.Name = "panelGry";
             this.panelGry.Size = new System.Drawing.Size(480, 360);
             this.panelGry.TabIndex = 1;
+            this.panelGry.Click += new System.EventHandler(this.panelGry_Click);
             this.panelGry.Paint += new System.Windows.Forms.PaintEventHandler(this.panelGry_Paint);
             // 
             // tableLayoutPanel

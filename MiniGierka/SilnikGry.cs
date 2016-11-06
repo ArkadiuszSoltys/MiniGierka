@@ -10,16 +10,36 @@ namespace MiniGierka
     class SilnikGry
     {
         private SilnikGraficzny grafika;
+        private List<ElementGry> elementy;
 
-        public void WczytajGrafike(Graphics grafika, Rectangle granice)
+        public SilnikGraficzny Grafika { get { return grafika; } }
+
+        public void Wczytaj(Graphics grafika, Rectangle granice)
         {
+            elementy = new List<ElementGry>();
             this.grafika = new SilnikGraficzny(grafika, granice);
-            this.grafika.Rozpocznij();
+        }
+
+        public void Rozpocznij()
+        {
+            grafika.Rozpocznij();
+        }
+
+        public void OdNowa(Graphics grafika, Rectangle granice)
+        {
+            Zatrzymaj();
+            Wczytaj(grafika, granice);
+            Rozpocznij();
         }
 
         public void Zatrzymaj()
         {
             grafika.Zatrzymaj();
+        }
+
+        public void Kliknij(int x, int y)
+        {
+
         }
     }
 }

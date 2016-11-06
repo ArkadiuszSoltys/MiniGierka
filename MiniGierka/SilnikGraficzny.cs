@@ -15,6 +15,8 @@ namespace MiniGierka
         private Font font = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Bold);
         private Thread render;
 
+        public bool Pracuje { get { return (render != null && render.IsAlive); } }
+
         public SilnikGraficzny(Graphics grafika, Rectangle granice)
         {
             this.grafika = grafika;
@@ -29,6 +31,8 @@ namespace MiniGierka
 
         public void Zatrzymaj()
         {
+            if (render == null || !render.IsAlive)
+                return;
             render.Abort();
         }
 
