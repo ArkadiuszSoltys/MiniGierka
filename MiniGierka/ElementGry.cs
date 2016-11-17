@@ -9,10 +9,27 @@ namespace MiniGierka
 {
     class ElementGry
     {
-        private Rectangle granice = new Rectangle(0,0,0,0);
-        private List<Bitmap> sprites = new List<Bitmap>();
+        protected PointF location = new PointF(0, 0);
+        protected SizeF size = new SizeF(32, 32);
+        protected List<Bitmap> sprites = new List<Bitmap>();
+        protected Bitmap aktualnySprite = Properties.Resources.sample;
+        protected bool doUsuniecia = false;
 
-        public static ZdarzenieClick Kliknieto = null;
+        protected bool reagujeNaKlikniecie = false;
+        
+        public RectangleF Granice { get { return new RectangleF(location, size); } }
+        public bool ReagujeNaKlikniecie { get { return reagujeNaKlikniecie; } }
+        public Bitmap AktualnySprite { get { return aktualnySprite; } }
+        public bool DoUsuniecia { get { return doUsuniecia; } }
+
+        public void Usun()
+        {
+            doUsuniecia = true;
+        }
+
+        virtual public void Aktualizuj(double deltaTime) { }
+
+        public ZdarzenieClick Kliknieto = null;
     }
 
     internal delegate void ZdarzenieClick();

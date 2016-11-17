@@ -22,9 +22,10 @@ namespace MiniGierka
 
         private void nowaGraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (gra.Grafika.Pracuje)
+            if (gra.Zajety)
             {
                 DialogResult rezulat = MessageBox.Show("Od nowa?", "Odnowa?", MessageBoxButtons.YesNo);
+
                 if (rezulat != DialogResult.Yes)
                     return;
             }
@@ -34,7 +35,7 @@ namespace MiniGierka
 
         private void zakończToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (gra.Grafika.Pracuje)
+            if (gra.Zajety)
             {
                 DialogResult rezulat = MessageBox.Show("Koniec?", "Koniec?", MessageBoxButtons.YesNo);
                 if (rezulat != DialogResult.Yes)
