@@ -36,14 +36,14 @@ namespace MiniGierka
             
             foreach (var e in elementy)
             {
-                grafikaKlatki.DrawImage(Properties.Resources.sample, e.Granice);
+                grafikaKlatki.DrawImage(e.AktualnySprite, e.Granice);
             }
 
             #endregion
 
             string fpsstring = string.Format("{0} fps", fps);
             SizeF stringSize = grafika.MeasureString(fpsstring, font);
-            grafikaKlatki.DrawString(fpsstring, font, new SolidBrush(Color.Green),
+            grafikaKlatki.DrawString(fpsstring, font, new SolidBrush(Color.White),
                 new PointF(granice.Right - stringSize.Width - 5, 5));
 
             grafika.DrawImage(klatka, 0, 0);

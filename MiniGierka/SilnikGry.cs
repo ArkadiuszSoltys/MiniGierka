@@ -13,7 +13,7 @@ namespace MiniGierka
     {
         private SilnikGraficzny grafika;
         private List<ElementGry> elementy;
-        private Random random = new Random();
+        private Random random = new Random(Environment.TickCount);
         private Thread watek;
 
         public bool Zajety { get { return watek != null && watek.IsAlive; } }
@@ -41,28 +41,39 @@ namespace MiniGierka
             double delta = 0;
             long deltaCzas = poczatekOdliczania;
 
+            Tlo tlo = new Tlo();
+            elementy.Add(tlo);
+            tlo.Respawn(grafika.Granice);
+            
+            Gracz gracz = new Gracz();
+            elementy.Add(gracz);
+            gracz.Respawn(grafika.Granice.Left + 25, grafika.Granice.Top + 145);
+            
+            Pojazd nowyPojazd;
             while (true)
             {
                 delta = (Environment.TickCount - deltaCzas) / 1000.0f;
                 deltaCzas = Environment.TickCount;
-                if (Environment.TickCount >= czasOstatniegoSpawnu + (Stale.OPOZNIENIE_RESPAWNU * 1000))
+
+                if (Environment.TickCount >= czasOstatniegoSpawnu + (Stale.PRZESZKODA_OPOZNIENIE * 1000))
                 {
-                    if (random.Next(0, 100) <= Stale.SZANSA_RESPAWNU)
+                    if (random.Next(0, 100) <= Stale.PRZESZKODA_SZANSA)
                     {
-                        Pojazd nowyPojazd = Pojazd.Wygeneruj((KierunekJazdy)random.Next((int)KierunekJazdy.Pierwszy, (int)KierunekJazdy.Ostatni));
+                        nowyPojazd = new Pojazd();
                         elementy.Add(nowyPojazd);
-                        nowyPojazd.Jedz();
-                        czasOstatniegoSpawnu = Environment.TickCount;
+                        nowyPojazd.Respawn(grafika.Granice.Right - 1, grafika.Granice.Top + 75 + (70 * random.Next(0, 2)));
                     }
+                    czasOstatniegoSpawnu = Environment.TickCount;
                 }
 
                 foreach(var e in elementy)
                 {
                     e.Aktualizuj(delta);
-                    if (e.Granice.Right >= grafika.Granice.Right)
-                    {
+                    if (!e.Granice.IntersectsWith(grafika.Granice))
                         e.Usun();
-                    }
+
+                    if (e as Pojazd != null && gracz.Granice.IntersectsWith(e.Granice))
+                        return;
                 }
                 elementy.RemoveAll(i => i.DoUsuniecia == true);
 

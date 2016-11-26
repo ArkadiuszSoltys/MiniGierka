@@ -8,7 +8,8 @@ namespace MiniGierka
 {
     class Stale
     {
-        public const int SZANSA_RESPAWNU = 20;//[%]
-        public const int OPOZNIENIE_RESPAWNU = 2;//[s]
+        public const int PRZESZKODA_SZANSA = 80;//[%]
+        public const int PRZESZKODA_OPOZNIENIE = 4;//[s]
+        public const int PRZESZKODA_PREDKOSC = 80;//[px/s]
     }
 }

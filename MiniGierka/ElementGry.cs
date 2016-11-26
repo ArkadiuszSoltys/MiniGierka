@@ -12,7 +12,7 @@ namespace MiniGierka
         protected PointF location = new PointF(0, 0);
         protected SizeF size = new SizeF(32, 32);
         protected List<Bitmap> sprites = new List<Bitmap>();
-        protected Bitmap aktualnySprite = Properties.Resources.sample;
+        protected Bitmap aktualnySprite;
         protected bool doUsuniecia = false;
 
         protected bool reagujeNaKlikniecie = false;

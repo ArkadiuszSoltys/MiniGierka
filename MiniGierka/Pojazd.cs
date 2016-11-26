@@ -7,87 +7,33 @@ using System.Threading.Tasks;
 
 namespace MiniGierka
 {
-    internal enum KolorPojazdow
-    {
-        Bialy,
-
-        Pierwszy = Bialy,
-        Ostatni = Bialy
-    }
-
-    internal enum KierunekJazdy
-    {
-        Poludnie,
-        Wschod,
-
-        Pierwszy = Poludnie,
-        Ostatni = Wschod
-    }
-
     class Pojazd : ElementGry
     {
-        private int predkoscMaks;
-        private int predkosc = 0;
-        private KolorPojazdow kolor;
-        private KierunekJazdy kierunek;
-        private static Random random = new Random();
-
-        private Pojazd() { }
-
-        public bool Jedzie { get { return predkosc > 0; } }
-
-        public Pojazd(KolorPojazdow kolor, int predkoscMaks, KierunekJazdy kierunek)
+        static List<Bitmap> Sprites = new List<Bitmap>()
         {
-            this.kolor = kolor;
-            this.predkoscMaks = predkoscMaks;
-            this.kierunek = kierunek;
-        }
+            Properties.Resources.auto_1,
+            Properties.Resources.auto_2,
+            Properties.Resources.auto_3,
+            Properties.Resources.auto_4
+        };
+        static Random random = new Random();
 
-        public static Pojazd Wygeneruj(KierunekJazdy kierunek)
+        public Pojazd()
         {
-            Pojazd pojazd = new Pojazd();
-            pojazd.predkoscMaks = random.Next(30, 100);
-            pojazd.kierunek = kierunek;
-            pojazd.kolor = KolorPojazdow.Bialy;
-            return pojazd;
-        }
-
-        public void Respawn()
-        {
-            size.Width = 64;
-            size.Height = 64;
-
-            switch (kierunek)
-            {
-                case KierunekJazdy.Poludnie:
-                    location.X = 20;
-                    location.Y = 20;
-                    break;
-                case KierunekJazdy.Wschod:
-                    location.X = 20;
-                    location.Y = 40;
-                    break;
-            }
+            aktualnySprite = Sprites[random.Next(0, Sprites.Count - 1)];
         }
 
         public override void Aktualizuj(double deltaTime)
         {
-            switch(kierunek)
-            {
-                case KierunekJazdy.Poludnie:
-                    location.X += (float)(predkosc * deltaTime);
-                    break;
-            }
+            location.X -= (float)(Stale.PRZESZKODA_PREDKOSC * deltaTime);
         }
 
-        public void Jedz()
+        public void Respawn(float x, float y)
         {
-            predkosc = predkoscMaks;
-        }
-
-        public void Zatrzymaj()
-        {
-            predkosc = 0;
+            size.Width = 162;
+            size.Height = 56;
+            location.X = x;
+            location.Y = y;
         }
     }
 }

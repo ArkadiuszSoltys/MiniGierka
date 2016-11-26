@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ElementGry.cs" />
+    <Compile Include="Gracz.cs" />
     <Compile Include="OknoAutorzy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +66,7 @@
     <Compile Include="SilnikGraficzny.cs" />
     <Compile Include="SilnikGry.cs" />
     <Compile Include="Stale.cs" />
+    <Compile Include="Tlo.cs" />
     <EmbeddedResource Include="OknoAutorzy.resx">
       <DependentUpon>OknoAutorzy.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +101,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sample.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tlo_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tlo_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\auto_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\auto_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\auto_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\auto_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gracz.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

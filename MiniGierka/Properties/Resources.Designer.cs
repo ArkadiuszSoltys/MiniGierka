@@ -63,9 +63,69 @@ namespace MiniGierka.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sample {
+        internal static System.Drawing.Bitmap auto_1 {
             get {
-                object obj = ResourceManager.GetObject("sample", resourceCulture);
+                object obj = ResourceManager.GetObject("auto_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap auto_2 {
+            get {
+                object obj = ResourceManager.GetObject("auto_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap auto_3 {
+            get {
+                object obj = ResourceManager.GetObject("auto_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap auto_4 {
+            get {
+                object obj = ResourceManager.GetObject("auto_4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gracz {
+            get {
+                object obj = ResourceManager.GetObject("gracz", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tlo_1 {
+            get {
+                object obj = ResourceManager.GetObject("tlo_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tlo_2 {
+            get {
+                object obj = ResourceManager.GetObject("tlo_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
