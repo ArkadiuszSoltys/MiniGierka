@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MiniGierka
 {
@@ -15,8 +16,10 @@ namespace MiniGierka
         private List<ElementGry> elementy;
         private Random random = new Random(Environment.TickCount);
         private Thread watek;
+        private Gracz gracz;
 
         public bool Zajety { get { return watek != null && watek.IsAlive; } }
+        public ZdarzeniePrzegrana Przegrana = null;
 
         public void Wczytaj(Graphics grafika, Rectangle granice)
         {
@@ -28,6 +31,19 @@ namespace MiniGierka
         {
             watek = new Thread(new ThreadStart(gra));
             watek.Start();
+        }
+
+        public void WcisnietyKlawisz(KeyPressEventArgs e)
+        {
+            switch(e.KeyChar)
+            {
+                case (char)Keys.Left:
+                    gracz.SkrecWLewo();
+                    break;
+                case (char)Keys.Right:
+                    gracz.SkrecWPrawo();
+                    break;
+            }
         }
 
         private void gra()
@@ -45,7 +61,7 @@ namespace MiniGierka
             elementy.Add(tlo);
             tlo.Respawn(grafika.Granice);
             
-            Gracz gracz = new Gracz();
+            gracz = new Gracz();
             elementy.Add(gracz);
             gracz.Respawn(grafika.Granice.Left + 25, grafika.Granice.Top + 145);
             
@@ -73,7 +89,10 @@ namespace MiniGierka
                         e.Usun();
 
                     if (e as Pojazd != null && gracz.Granice.IntersectsWith(e.Granice))
+                    {
+                        Przegrana();
                         return;
+                    }
                 }
                 elementy.RemoveAll(i => i.DoUsuniecia == true);
 
@@ -104,16 +123,6 @@ namespace MiniGierka
             watek.Abort();
         }
 
-        public void Kliknij(int x, int y)
-        {
-            foreach(var element in elementy)
-            {
-                if (!element.ReagujeNaKlikniecie)
-                    continue;
-
-                if (element.Granice.Contains(x, y))
-                    element.Kliknieto();
-            }
-        }
+        internal delegate void ZdarzeniePrzegrana();
     }
 }

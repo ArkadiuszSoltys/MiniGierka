@@ -10,6 +10,7 @@ namespace MiniGierka
     class Tlo : ElementGry
     {
         private int krokAnimacji = 0;
+        protected List<Bitmap> sprites = new List<Bitmap>();
         private int szybkoscAnimacji = 100;
         private long ostatniKrok;
 

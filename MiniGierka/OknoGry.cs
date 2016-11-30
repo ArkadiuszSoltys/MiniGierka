@@ -18,18 +18,25 @@ namespace MiniGierka
         public OknoGry()
         {
             InitializeComponent();
+            gra.Przegrana += Przegrana;
+        }
+
+        private void Przegrana()
+        {
+            MessageBox.Show("Spowodowałeś kolizję! Na szczęście możesz zacząć od początku...", "Oooops!", MessageBoxButtons.OK);
         }
 
         private void nowaGraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (gra.Zajety)
             {
-                DialogResult rezulat = MessageBox.Show("Od nowa?", "Odnowa?", MessageBoxButtons.YesNo);
+                DialogResult rezulat = MessageBox.Show("Czy na pewno chcesz zacząć od początku?", "Nowa gra?", MessageBoxButtons.YesNo);
 
                 if (rezulat != DialogResult.Yes)
                     return;
             }
-            
+            label_Klikajabyzaczac.Visible = false;
+
             gra.OdNowa(panelGry.CreateGraphics(), new Rectangle(0, 0, panelGry.Width, panelGry.Height));
         }
 
@@ -37,7 +44,7 @@ namespace MiniGierka
         {
             if (gra.Zajety)
             {
-                DialogResult rezulat = MessageBox.Show("Koniec?", "Koniec?", MessageBoxButtons.YesNo);
+                DialogResult rezulat = MessageBox.Show("Czy na pewno chcesz opuścić grę?", "Wyjście", MessageBoxButtons.YesNo);
                 if (rezulat != DialogResult.Yes)
                     return;
             }
@@ -67,7 +74,17 @@ namespace MiniGierka
 
         private void panelGry_Click(object sender, EventArgs e)
         {
-            gra.Kliknij(MousePosition.X, MousePosition.Y);
+            if (!gra.Zajety)
+            {
+                nowaGraToolStripMenuItem_Click(null, null);
+            }
+        }
+
+        private void OknoGry_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!gra.Zajety)
+                return;
+            gra.WcisnietyKlawisz(e);
         }
     }
 }
