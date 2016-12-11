@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,6 @@ namespace MiniGierka
 {
     class Gracz : ElementGry
     {
-        private bool skrecWLewo = false;
-        private bool skrecWPrawo = false;
-
         public Gracz()
         {
             aktualnySprite = Properties.Resources.gracz;
@@ -24,25 +22,22 @@ namespace MiniGierka
             location.Y = y;
         }
 
-        public override void Aktualizuj(double deltaTime)
-        {
-            if(skrecWLewo)
-            {
-                location.Y -= (float)(30 * deltaTime);
-            }
-
-            skrecWLewo = false;
-            skrecWPrawo = false;
-        }
-
         public void SkrecWPrawo()
         {
-            skrecWPrawo = true;
+            location.Y += Stale.GRACZ_PREDKOSC_RUCHU;
         }
 
         public void SkrecWLewo()
         {
-            skrecWLewo = true;
+            location.Y -= Stale.GRACZ_PREDKOSC_RUCHU;
+        }
+
+        public void SprawdzPozycje(RectangleF granice)
+        {
+            if (Granice.Top < granice.Top)
+                location.Y = granice.Top;
+            if (Granice.Bottom > granice.Bottom)
+                location.Y = granice.Bottom - size.Height;
         }
     }
 }

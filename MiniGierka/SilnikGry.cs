@@ -35,13 +35,18 @@ namespace MiniGierka
 
         public void WcisnietyKlawisz(KeyPressEventArgs e)
         {
+            RectangleF granice = new RectangleF(0, 75, grafika.Granice.Width, 210);
             switch(e.KeyChar)
             {
-                case (char)Keys.Left:
+                case 'W':
+                case 'w':
                     gracz.SkrecWLewo();
+                    gracz.SprawdzPozycje(granice);
                     break;
-                case (char)Keys.Right:
+                case 'S':
+                case 's':
                     gracz.SkrecWPrawo();
+                    gracz.SprawdzPozycje(granice);
                     break;
             }
         }
@@ -77,7 +82,7 @@ namespace MiniGierka
                     {
                         nowyPojazd = new Pojazd();
                         elementy.Add(nowyPojazd);
-                        nowyPojazd.Respawn(grafika.Granice.Right - 1, grafika.Granice.Top + 75 + (70 * random.Next(0, 2)));
+                        nowyPojazd.Respawn(grafika.Granice.Right - 1, grafika.Granice.Top + 75 + (70 * random.Next(0, 3)));
                     }
                     czasOstatniegoSpawnu = Environment.TickCount;
                 }
